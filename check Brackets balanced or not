@@ -1,0 +1,55 @@
+import java.util.*;
+import java.io.*;
+public class Main
+{
+	public static void main(String[] args) throws Exception {
+	    System.out.print("Enter your expression : ");
+	    Scanner sc=new Scanner(System.in);
+	    String str =sc.nextLine();
+	    
+	    Stack<Character> st = new Stack<>();
+	    for(int i=0;i<str.length();i++){
+	        char ch =str.charAt(i);
+	        if((ch == '(') || (ch == '{')|| (ch == '[')){
+	            st.push(ch);
+	        }
+	        else if(ch == ')'){
+	            if((st.peek()!='(')){
+	                System.out.println("Your expression seems to be unbalanced");
+	                return;
+	            }
+	            else{
+	                st.pop();
+	            }
+	        }
+	        else if(ch == '}'){
+	            if((st.peek()!='{')){
+	                System.out.println("Your expression seems to be unbalanced");
+	                return;
+	            }
+	            else{
+	                st.pop();
+	            }
+	        }
+	        else if(ch == ']'){
+	            if((st.peek()!='[')){
+	                System.out.println("Your expression seems to be unbalanced");
+	                return;
+	            }
+	            else{
+	                st.pop();
+	            }
+	        }
+	        else {
+	            continue;
+	        }
+	    }
+		if(st.size()==0){
+		    System.out.print("Your expression is well balanced");
+		    return;
+		}
+		else{
+		    System.out.print("You are missing with some brackets");
+		}
+	}
+}
