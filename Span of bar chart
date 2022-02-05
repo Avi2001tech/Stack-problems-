@@ -1,0 +1,48 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		System.out.println("Enter the size of array :");
+		Scanner sc = new Scanner(System.in);
+		int n =sc.nextInt();
+		int[] array = new int[n];
+		System.out.println("fill your array :");
+		for(int i=0;i<n;i++){
+		    //int temo = array[i];
+		    array[i]= sc.nextInt();
+		}
+		int[] span = solution(array);
+		display(span);
+	}
+	
+	public static int[] solution(int[] array){
+	    int[] span = new int[array.length];
+	    Stack<Integer> st = new Stack<>();
+	    st.push(0);
+	    span[0]=1;
+	    for(int i=1;i<array.length;i++){
+	        while(st.size()>0 && array[i]>array[st.peek()]){
+	            st.pop();
+	        }
+	        if(st.size()==0){
+	            span[i]=i +1;
+	        }
+	        else{
+	            span[i]=i - st.peek();
+	        }
+	        st.push(i);
+	    }
+	    System.out.println("The span of array is :");
+	    return span;
+	}
+	
+	// Display Function 
+	
+	public static void display(int[] array){
+	    StringBuilder sb = new StringBuilder();
+	    for(int val: array){
+	        sb.append(val + " ");
+	    }
+	    System.out.print(sb);
+	}
+}
